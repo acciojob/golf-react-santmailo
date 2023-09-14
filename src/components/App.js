@@ -5,16 +5,16 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            renderBall: false,
+            renderBall: true,
             posi : 0,
-            ballPosition: { left: "0px" }
+            ballPosition: { left: `0px` }    
         };
         this.renderChoice = this.renderBallOrButton.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
     };
 
     buttonClickHandler() {
-   
+        this.state.renderBall = true;
    }
     renderBallOrButton() {
 		if (this.state.renderBall) {
@@ -26,7 +26,19 @@ class App extends Component {
 
     // bind ArrowRight keydown event
     componentDidMount() {
-      
+        document.addEventListener('keydown', (e) => {
+            e.preventDefault();
+            if(e.key == "ArrowRight"){
+                const posiNew = this.state.posi+5;
+                this.setState({
+                    posi: posiNew,
+                    ballPosition: {left : (posiNew.toString())+"px"},
+                }
+                );
+            }
+            console.log(this.state.posi.toString());
+            console.log(this.state.ballPosition.left);
+        })
     }
 
     render() {
