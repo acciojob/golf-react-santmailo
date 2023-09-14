@@ -5,16 +5,20 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            renderBall: true,
+            renderBall: false,
             posi : 0,
             ballPosition: { left: `0px` }    
         };
         this.renderChoice = this.renderBallOrButton.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
     };
-
+    
     buttonClickHandler() {
-        this.state.renderBall = true;
+        this.setState(
+            {
+                renderBall : true
+            }
+        )
    }
     renderBallOrButton() {
 		if (this.state.renderBall) {
@@ -36,8 +40,6 @@ class App extends Component {
                 }
                 );
             }
-            console.log(this.state.posi.toString());
-            console.log(this.state.ballPosition.left);
         })
     }
 
